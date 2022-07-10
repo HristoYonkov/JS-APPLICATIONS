@@ -42,6 +42,7 @@ export async function editView(ctx) {
         const data = Object.fromEntries(new FormData(event.target));
         
         if (Object.values(data).some(v => v == '')) {
+            
             return alert('All fields are required');
         }
         
@@ -54,8 +55,10 @@ export async function editView(ctx) {
             imageUrl: data.imageUrl
         })
         
+        
         ctx.page.redirect(`/details/${ctx.params.id}`)
     }
+    
     
     ctx.render(editTemp(card, onSubmit))
 }

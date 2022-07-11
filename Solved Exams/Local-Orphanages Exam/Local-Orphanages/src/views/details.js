@@ -44,13 +44,17 @@ const detailsTemp = (card, user, onDelete, onClick, donates, ifDonate) => html`
 export async function detailsView(ctx) {
     const card = await request.get(`/data/posts/${ctx.params.id}`)
     const donates = await request.get(`/data/donations?where=postId%3D%22${ctx.params.id}%22&distinct=_ownerId&count`)
-    const ifDonate = await request.get(`/data/donations?where=postId%3D%22${ctx.params.id}%22%20and%20_ownerId%3D%22${ctx.user._id}%22&count`)
+    
+    let ifDonate = 1;
+    if (ctx.user) {
+        ifDonate = await request.get(`/data/donations?where=postId%3D%22${ctx.params.id}%22%20and%20_ownerId%3D%22${ctx.user._id}%22&count`)
+    }
     
     ctx.render(detailsTemp(card, ctx.user, onDelete, onClick, donates, ifDonate))
 
     async function onClick(event) {
         event.preventDefault();
-        console.log('clicked');
+        
         await request.post(`/data/donations`, {
             postId: card._id
         })

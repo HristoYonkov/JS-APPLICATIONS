@@ -54,7 +54,6 @@ export async function detailsView(ctx) {
 
     async function onLike(event) {
         event.preventDefault()
-        const ifLiked = 1;
         const like = await request.post('/data/likes',
         {
             theaterId: id

@@ -4,19 +4,19 @@ import { getUser } from "../services/userService.js";
 
 const navTemp = (user) => html`
     <nav>
-        <a href="/">Theater</a>
+        <section class="logo">
+            <img src="./images/logo.png" alt="logo">
+        </section>
         <ul>
-            ${user
-                ? html`
-                    <li><a href="/profile">Profile</a></li>
-                    <li><a href="create">Create Event</a></li>
-                    <li><a href="/logout">Logout</a></li>
-                `
-                : html`
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/register">Register</a></li>
-                `
-            }
+            <!--Users and Guest-->
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Dashboard</a></li>
+            <!--Only Guest-->
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Register</a></li>
+            <!--Only Users-->
+            <li><a href="#">Create Postcard</a></li>
+            <li><a href="#">Logout</a></li>
         </ul>
     </nav>
 `

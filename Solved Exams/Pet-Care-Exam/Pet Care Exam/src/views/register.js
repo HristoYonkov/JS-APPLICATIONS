@@ -5,6 +5,7 @@ import { setUser } from "../services/userService.js";
 const registerTemp = (onSubmit) => html`
     <section id="registerPage">
         <form @submit=${onSubmit} class="registerForm">
+            <img src="./images/logo.png" alt="logo" />
             <h2>Register</h2>
             <div class="on-dark">
                 <label for="email">Email:</label>
@@ -34,30 +35,30 @@ export function registerView(ctx) {
     async function onSubmit(event) {
         event.preventDefault();
         const data = Object.fromEntries(new FormData(event.target));
-        
-        if(data.repeatPassword === '' || data.email === '' || data.password === '') {
+
+        if (data.repeatPassword === '' || data.email === '' || data.password === '') {
 
 
             return alert('All fields must be filled!')
         }
         if (data.password !== data.repeatPassword) {
-            
 
-            return  alert('Passwords must match!')
+
+            return alert('Passwords must match!')
         }
 
-        const user = await request.post('/users/register', 
+        const user = await request.post('/users/register',
             {
                 email: data.email,
                 password: data.password,
             })
 
-            if (user) {
-                setUser(user)
-                ctx.page.redirect('/')
-            }
+        if (user) {
+            setUser(user)
+            ctx.page.redirect('/')
+        }
     }
 
-    
+
     ctx.render(registerTemp(onSubmit))
 }

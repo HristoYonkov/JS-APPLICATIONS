@@ -3,7 +3,9 @@ import { navView } from "./src/middlewares/nav.js";
 
 
 import { clearUser, getToken } from "./src/services/userService.js";
+import { catalogView } from "./src/views/catalog.js";
 import { editView } from "./src/views/edit.js";
+import { homeView } from "./src/views/home.js";
 import { loginView } from "./src/views/login.js";
 import { registerView } from "./src/views/register.js";
 
@@ -13,6 +15,9 @@ page('/login', loginView)
 page('/register', registerView)
 page('/logout', onLogout)
 page('/edit/:id', editView)
+page('/', homeView)
+page('/catalog', catalogView)
+
 
 
 

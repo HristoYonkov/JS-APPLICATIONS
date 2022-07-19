@@ -37,13 +37,9 @@ export function registerView(ctx) {
         const data = Object.fromEntries(new FormData(event.target));
 
         if (data.repeatPassword === '' || data.email === '' || data.password === '') {
-
-
             return alert('All fields must be filled!')
         }
         if (data.password !== data.repeatPassword) {
-
-
             return alert('Passwords must match!')
         }
 

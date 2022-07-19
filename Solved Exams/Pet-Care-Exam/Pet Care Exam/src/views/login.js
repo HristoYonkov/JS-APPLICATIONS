@@ -43,7 +43,6 @@ export async function loginView(ctx) {
             password: data.password
         })
         
-        
         if (user.accessToken) {
             setUser(user);
             ctx.page.redirect('/')

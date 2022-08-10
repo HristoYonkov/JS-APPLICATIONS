@@ -4,28 +4,25 @@ import { setUser } from "../services/userService.js";
 
 const registerTemp = (onSubmit) => html`
     <section id="registerPage">
-        <form @submit=${onSubmit} class="registerForm">
-            <h2>Register</h2>
-            <div class="on-dark">
-                <label for="email">Email:</label>
-                <input id="email" name="email" type="text" placeholder="steven@abv.bg" value="">
-            </div>
+        <form @submit=${onSubmit}>
+            <fieldset>
+                <legend>Register</legend>
     
-            <div class="on-dark">
-                <label for="password">Password:</label>
-                <input id="password" name="password" type="password" placeholder="********" value="">
-            </div>
+                <label for="email" class="vhide">Email</label>
+                <input id="email" class="email" name="email" type="text" placeholder="Email">
     
-            <div class="on-dark">
-                <label for="repeatPassword">Repeat Password:</label>
-                <input id="repeatPassword" name="repeatPassword" type="password" placeholder="********" value="">
-            </div>
+                <label for="password" class="vhide">Password</label>
+                <input id="password" class="password" name="password" type="password" placeholder="Password">
     
-            <button class="btn" type="submit">Register</button>
+                <label for="conf-pass" class="vhide">Confirm Password:</label>
+                <input id="conf-pass" class="conf-pass" name="conf-pass" type="password" placeholder="Confirm Password">
     
-            <p class="field">
-                <span>If you have profile click <a href="/login">here</a></span>
-            </p>
+                <button type="submit" class="register">Register</button>
+    
+                <p class="field">
+                    <span>If you already have profile click <a href="#">here</a></span>
+                </p>
+            </fieldset>
         </form>
     </section>
 `;
@@ -35,12 +32,12 @@ export function registerView(ctx) {
         event.preventDefault();
         const data = Object.fromEntries(new FormData(event.target));
         
-        if(data.repeatPassword === '' || data.email === '' || data.password === '') {
+        if(data['conf-pass'] === '' || data.email === '' || data.password === '') {
 
 
             return alert('All fields must be filled!')
         }
-        if (data.password !== data.repeatPassword) {
+        if (data.password !== data['conf-pass']) {
             
 
             return  alert('Passwords must match!')

@@ -5,22 +5,22 @@ import { getUser } from "../services/userService.js";
 const navTemp = (user) => html`
     <nav>
         <img src="./images/headphones.png">
-        <a href="#">Home</a>
+        <a href="/">Home</a>
         <ul>
             <!--All user-->
-            <li><a href="#">Catalog</a></li>
-            <li><a href="#">Search</a></li>
+            <li><a href="/catalog">Catalog</a></li>
+            <li><a href="/search">Search</a></li>
 
             ${user
                 ?   html`
                     <!--Only user-->
-                    <li><a href="#">Create Album</a></li>
-                    <li><a href="#">Logout</a></li>
+                    <li><a href="/create">Create Album</a></li>
+                    <li><a href="/logout">Logout</a></li>
                 `
                 :   html`
                     <!--Only guest-->
-                    <li><a href="#">Login</a></li>
-                    <li><a href="#">Register</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Register</a></li>
                 `
             }
             

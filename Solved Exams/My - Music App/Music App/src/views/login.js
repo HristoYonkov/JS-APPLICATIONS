@@ -3,23 +3,23 @@ import * as request from '../services/api.js'
 import { setUser } from "../services/userService.js";
 
 const loginTemp = (onSubmit) => html`
-    <section id="loginaPage">
-        <form @submit=${onSubmit} class="loginForm">
-            <h2>Login</h2>
-            <div>
-                <label for="email">Email:</label>
-                <input id="email" name="email" type="text" placeholder="steven@abv.bg" value="">
-            </div>
-            <div>
-                <label for="password">Password:</label>
-                <input id="password" name="password" type="password" placeholder="********" value="">
-            </div>
+    <section id="loginPage">
+        <form @submit=${onSubmit}>
+            <fieldset>
+                <legend>Login</legend>
     
-            <button class="btn" type="submit">Login</button>
+                <label for="email" class="vhide">Email</label>
+                <input id="email" class="email" name="email" type="text" placeholder="Email">
     
-            <p class="field">
-                <span>If you don't have profile click <a href="/register">here</a></span>
-            </p>
+                <label for="password" class="vhide">Password</label>
+                <input id="password" class="password" name="password" type="password" placeholder="Password">
+    
+                <button type="submit" class="login">Login</button>
+    
+                <p class="field">
+                    <span>If you don't have profile click <a href="/register">here</a></span>
+                </p>
+            </fieldset>
         </form>
     </section>
 `

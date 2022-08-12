@@ -20,7 +20,7 @@ const card = (card) => html`
             <div class="text-center">
                 <p class="name">Name: ${card.name}</p>
                 <p class="artist">Artist: ${card.artist}</p>
-                <p class="genre">Genre: ${card.genere}</p>
+                <p class="genre">Genre: ${card.genre}</p>
                 <p class="price">Price: ${card.price}</p>
                 <p class="date">Release Date: ${card.releaseDate}</p>
             </div>
@@ -33,7 +33,6 @@ const card = (card) => html`
 
 export async function catalogView(ctx) {
     const cards = await request.get(`/data/albums?sortBy=_createdOn%20desc&distinct=name`);
-    console.log(cards);
 
     ctx.render(catalogTemp(cards))
 }

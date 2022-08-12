@@ -49,7 +49,7 @@ export async function createView(ctx) {
         const album = await request.post('/data/albums',
         {
             name: data.name,
-            imgUrl: data.imageUrl,
+            imgUrl: data.imgUrl,
             price: data.price,
             releaseDate: data.releaseDate,
             artist: data.artist,

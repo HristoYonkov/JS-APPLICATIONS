@@ -3,39 +3,43 @@ import * as request from '../services/api.js'
 
 
 const editTemp = (card, onSubmit) => html`
-<section id="editPage">
-            <form @submit=${onSubmit} class="theater-form">
-                <h1>Edit Theater</h1>
-                <div>
-                    <label for="title">Title:</label>
-                    <input id="title" name="title" type="text" placeholder="Theater name" value=${card.title}>
-                </div>
-                <div>
-                    <label for="date">Date:</label>
-                    <input id="date" name="date" type="text" placeholder="Month Day, Year" value=${card.date}>
-                </div>
-                <div>
-                    <label for="author">Author:</label>
-                    <input id="author" name="author" type="text" placeholder="Author"
-                        value=${card.author}>
-                </div>
-                <div>
-                    <label for="description">Theater Description:</label>
-                    <textarea id="description" name="description"
-                        placeholder="Description">${card.description}</textarea>
-                </div>
-                <div>
-                    <label for="imageUrl">Image url:</label>
-                    <input id="imageUrl" name="imageUrl" type="text" placeholder="Image Url"
-                        value=${card.imageUrl}>
-                </div>
-                <button class="btn" type="submit">Submit</button>
+<section class="editPage">
+            <form @submit=${onSubmit}>
+                <fieldset>
+                    <legend>Edit Album</legend>
+
+                    <div class="container">
+                        <label for="name" class="vhide">Album name</label>
+                        <input id="name" name="name" class="name" type="text" value=${card.name}>
+
+                        <label for="imgUrl" class="vhide">Image Url</label>
+                        <input id="imgUrl" name="imgUrl" class="imgUrl" type="text" value=${card.imgUrl}>
+
+                        <label for="price" class="vhide">Price</label>
+                        <input id="price" name="price" class="price" type="text" value=${card.price}>
+
+                        <label for="releaseDate" class="vhide">Release date</label>
+                        <input id="releaseDate" name="releaseDate" class="releaseDate" type="text" value=${card.releaseDate}>
+
+                        <label for="artist" class="vhide">Artist</label>
+                        <input id="artist" name="artist" class="artist" type="text" value=${card.artist}>
+
+                        <label for="genre" class="vhide">Genre</label>
+                        <input id="genre" name="genre" class="genre" type="text" value=${card.genre}>
+
+                        <label for="description" class="vhide">Description</label>
+                        <textarea name="description" class="description" rows="10"
+                            cols="10">${card.description}</textarea>
+
+                        <button class="edit-album" type="submit">Edit Album</button>
+                    </div>
+                </fieldset>
             </form>
         </section>
 `;
 
 export async function editView(ctx) {
-    const card = await request.get(`/data/theaters/${ctx.params.id}`);
+    const card = await request.get(`/data/albums/${ctx.params.id}`);
     
     async function onSubmit(event) {
         event.preventDefault();
@@ -46,13 +50,15 @@ export async function editView(ctx) {
             return alert('All fields are required');
         }
         
-        const result = await request.put(`/data/theaters/${ctx.params.id}`,
+        const result = await request.put(`/data/albums/${ctx.params.id}`,
         {
-            title: data.title,
-            date: data.date,
-            author: data.author,
-            description: data.description,
-            imageUrl: data.imageUrl
+            name: data.name,
+            imgUrl: data.imgUrl,
+            price: data.price,
+            releaseDate: data.releaseDate,
+            artist: data.artist,
+            genre: data.genre,
+            description: data.description 
         })
         
         

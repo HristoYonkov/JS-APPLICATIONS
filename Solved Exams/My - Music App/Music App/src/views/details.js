@@ -23,7 +23,7 @@ const detailsTemp = (user, card, onDelete) => html`
                 ${user && user._id === card._ownerId
                     ?   html`
                         <div class="actionBtn">
-                            <a href="/edit" class="edit">Edit</a>
+                            <a href="/edit/${card._id}" class="edit">Edit</a>
                             <a @click=${onDelete} href="#" class="remove">Delete</a>
                         </div>
                     `

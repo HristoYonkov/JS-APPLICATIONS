@@ -16,35 +16,35 @@ const detailsTemp = (card, user, onDelete, comments, onSubmit) => html`
     
             <p class="text">${card.summary}</p>
     
-            <!-- Bonus ( for Guests and Users ) -->
-            <div class="details-comments">
-                <h2>Comments:</h2>
-                ${comments.length > 0
-                    ?   html`
-                        <ul>
-                            ${comments.map(commentTemp)}
-                        </ul>
-                    `
-                    :   html`
-                        <!-- Display paragraph: If there are no games in the database -->
-                        <p class="no-comment">No comments.</p>
-                    `
-                }
             
-            </div>
-    
             <!-- Edit/Delete buttons ( Only for creator of this game )  -->
             ${user && user._id === card._ownerId
                 ?   html`
                     <div class="buttons">
-                    <a href="/edit/${card._id}" class="button">Edit</a>
-                    <a href="#" @click=${onDelete} class="button">Delete</a>
+                        <a href="/edit/${card._id}" class="button">Edit</a>
+                        <a href="#" @click=${onDelete} class="button">Delete</a>
                     </div>
-                `
+                    `
                 :   nothing
             }
         </div>
-    
+        
+        <!-- Bonus ( for Guests and Users ) -->
+        <div class="details-comments">
+            <h2>Comments:</h2>
+            ${comments.length > 0
+                ?   html`
+                    <ul>
+                        ${comments.map(commentTemp)}
+                    </ul>
+                `
+                :   html`
+                    <!-- Display paragraph: If there are no games in the database -->
+                    <p class="no-comment">No comments.</p>
+                `
+            }
+        
+        </div>
         <!-- Bonus -->
         <!-- Add Comment ( Only for logged-in users, which is not creators of the current game ) -->
         ${user && user._id !== card._ownerId

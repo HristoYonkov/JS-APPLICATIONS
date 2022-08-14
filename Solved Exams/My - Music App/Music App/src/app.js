@@ -10,6 +10,7 @@ import { editView } from "./views/edit.js";
 import { homeView } from "./views/home.js";
 import { loginView } from "./views/login.js";
 import { registerView } from "./views/register.js";
+import { searchView } from "./views/search.js";
 
 page(navView);
 
@@ -21,6 +22,7 @@ page('/', homeView)
 page('/catalog', catalogView)
 page('/create', createView)
 page('/details/:id', detailsView)
+page('/search', searchView);
 
 
 page.start();
